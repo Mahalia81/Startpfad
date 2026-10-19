@@ -96,9 +96,12 @@ nav.tabs::-webkit-scrollbar { display: none; }
 .tab:hover { color: var(--ink); background: var(--blue-soft); }
 .tab[aria-current="page"] { color: var(--ink); background: var(--blue-soft); box-shadow: inset 0 -3px 0 var(--blue); }
 .tab-sep { flex: none; width: 1px; margin: 10px 6px; background: var(--line); }
+/* Smartphone: alle Bereiche sichtbar als umbrechende Chips statt versteckter Scrollleiste (wie in der Bibliothek) */
 @media (max-width: 640px) {
-  nav.tabs { -webkit-mask-image: linear-gradient(90deg, #000 calc(100% - 28px), transparent); mask-image: linear-gradient(90deg, #000 calc(100% - 28px), transparent); padding-right: 28px; }
-  .tab { padding-inline: 10px; font-size: 0.9rem; }
+  nav.tabs { flex-wrap: wrap; overflow: visible; gap: 6px; margin-inline: 0; padding: 4px 0 14px; }
+  .tab { padding: 7px 12px; font-size: 0.88rem; border-radius: 99px; border: 1px solid var(--line); color: var(--ink); }
+  .tab[aria-current="page"] { box-shadow: none; border-color: var(--blue); background: var(--blue-soft); }
+  .tab-sep { display: none; }
 }
 
 main { padding-block: 32px 64px; }
