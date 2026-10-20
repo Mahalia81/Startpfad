@@ -171,7 +171,7 @@ h1, h2, h3 { font-weight: 700; color: var(--ink); text-wrap: balance; margin: 0;
 .station p { margin: 0; color: var(--muted); font-size: 0.95rem; }
 .station .st { grid-column: 1 / -1; margin-top: 8px; font-size: 0.85rem; font-weight: 700; color: var(--muted); }
 .station .st.ok { color: var(--done); }
-.aboutcards { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 16px; }
+.aboutcards { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 16px; }
 @media (max-width: 900px) { .aboutcards { grid-template-columns: 1fr; } }
 .aboutcard { padding: 18px 20px; border-radius: 14px; border: 1px solid var(--line); background: var(--surface); }
 .aboutcard h2 { font-size: 1.05rem; margin-bottom: 6px; }
@@ -282,6 +282,9 @@ input:focus, select:focus, textarea:focus { border-color: var(--accent); }
 .meet .wk { font-size: 0.8rem; text-transform: uppercase; letter-spacing: 0.06em; color: var(--tc-ink); font-weight: 700; }
 .meet .leit { margin: 6px 0 8px; }
 .path .station.prep, .path .station.after { grid-column: 1 / -1; }
+/* Erledigte Woche: Stempel quer über die Karte */
+.station.done > *:not(.st) { opacity: 0.45; }
+.station.done::after { content: "✓ Bereits erledigt"; position: absolute; left: 50%; top: 46%; transform: translate(-50%, -50%) rotate(-10deg); padding: 6px 16px; border: 3px solid var(--done); border-radius: 10px; background: var(--surface); color: var(--done); font-weight: 800; font-size: 1.15rem; text-transform: uppercase; letter-spacing: 0.06em; white-space: nowrap; pointer-events: none; box-shadow: 0 2px 10px rgba(10, 50, 84, 0.12); }
 .handover { list-style: none; padding: 0; margin: 0; display: grid; gap: 12px; counter-reset: ho; }
 .handover li { counter-increment: ho; position: relative; padding: 2px 0 2px 46px; }
 .handover li::before { content: counter(ho); position: absolute; left: 0; top: 0; width: 32px; height: 32px; border-radius: 50%; background: var(--navy); color: #fff; font-weight: 700; display: grid; place-items: center; }
@@ -355,9 +358,9 @@ footer p { margin: 4px 0; }
     </a>
     <nav class="tabs" aria-label="Hauptnavigation">
       <a class="tab" href="#" data-tab="home">Pfad</a>
-      <a class="tab" href="#woche/1" data-tab="week">Wochen</a>
-      <a class="tab" href="#team" data-tab="team">Teamtreffen</a>
-      <a class="tab" href="#barometer" data-tab="baro">Barometer</a>
+      <a class="tab" href="#woche/1" data-tab="week">Ich</a>
+      <a class="tab" href="#team" data-tab="team">Team</a>
+      <a class="tab" href="#barometer" data-tab="baro">Kollegium</a>
       <a class="tab" href="#rueckblick" data-tab="review">Rückblick</a>
       <span class="tab-sep" aria-hidden="true"></span>
       <a class="tab ext" href="https://mahalia81.github.io/StrategieBibliothek/" target="_blank" rel="noopener">Strategie-Bibliothek ↗</a>
@@ -855,7 +858,7 @@ const ART = (function () {
         "Am Anfang steht deine Haltung: Wer davon ausgeht, dass Fähigkeiten durch Anstrengung und gute Strategien wachsen, fragt nach dem Vorgehen statt nach Begabung. Das hört die Klasse an jeder Rückmeldung. „Das kannst du noch nicht“ öffnet einen Weg, „Das ist nicht deine Stärke“ schließt ihn.",
         "In der Vorbereitung hast du die Ausgangslage erhoben: den Strategie-Check der Klasse und drei Beobachtungen. Jetzt schaust du genauer hin. Daraus ergibt sich, womit du in Woche 2 beginnst."
       ],
-      kern: "Selbstreguliertes Lernen heißt nicht, Kinder allein zu lassen. Es heißt, ihnen Schritt für Schritt beizubringen, wie man lernt. Danach gibst du die Verantwortung nach und nach ab.",
+      kern: "Selbstreguliertes Lernen heißt nicht, Schülerinnen und Schüler allein zu lassen. Es heißt, ihnen Schritt für Schritt beizubringen, wie man lernt. Danach gibst du die Verantwortung nach und nach ab.",
       auftrag: [
         "Schau dir die Auswertung deines Strategie-Checks in der Bibliothek unter " + bib("klassen", "Meine Klassen") + " an. Welche Bereiche nennt die Klasse häufig, welche selten?",
         "Zeig der Klasse, was sie schon kann: Nenne zwei oder drei Strategien, die viele aufgeschrieben haben. Würdige sie ausdrücklich.",
@@ -864,11 +867,12 @@ const ART = (function () {
       ],
       training: { title: "Stärken, Schwächen und die Vogelperspektive", text: [
         "Zeig zum Einstieg Fotos bekannter Personen und frag: Was können sie besonders gut? Was haben sie mit euch gemeinsam? Danach notieren die Schülerinnen und Schüler eigene Stärken und Schwächen und fragen eine Partnerin oder einen Partner nach deren Einschätzung.",
+        "Drei Beispiele, die sich gut eignen: Lionel Messi musste in jungen Jahren wegen seines langsamen Wachstums behandelt werden und wurde trotzdem einer der besten Fußballer der Welt. J. K. Rowling bekam für ihr erstes Harry-Potter-Buch viele Absagen von Verlagen, bevor es erscheinen konnte. Michael Jordan schaffte es als Jugendlicher zunächst nicht in die erste Mannschaft seiner Schule und trainierte danach umso mehr. Alle drei zeigen: Stärken entstehen durch Übung und Durchhalten. Nimm gern auch Personen, die deine Klasse gerade kennt.",
         "Dann führst du ein Bild ein, das durch alle sechs Wochen trägt: die Vogelperspektive. Wie ein Vogel von oben schaut man auf das eigene Lernen. Vor dem Lernen fragt man sich, was man schon kann und was ablenken könnte. Während des Lernens prüft man, ob man alles versteht. Nach dem Lernen schaut man, was gelungen ist und was man nächstes Mal besser macht."] },
       todo: ["Auswertung des Strategie-Checks angesehen", "Mit der Klasse über ihre Strategien gesprochen", "Rückmeldungen zum Vorgehen gegeben"],
-      refl: ["Was zeigt der Strategie-Check? Welche Strategien nennt die Klasse häufig und welche fehlen?", "Welche Rückmeldung zum Vorgehen ist dir gelungen? Wie hat das Kind reagiert?", "Deine 15-%-Lösung aus dem Workshop: Passt sie zu dem, was du jetzt siehst?"],
+      refl: ["Was zeigt der Strategie-Check? Welche Strategien nennt die Klasse häufig und welche fehlen?", "Welche Rückmeldung zum Vorgehen ist dir gelungen? Wie hat die Schülerin oder der Schüler reagiert?", "Deine 15-%-Lösung aus dem Workshop: Passt sie zu dem, was du jetzt siehst?"],
       team: { fragen: ["Wo ermöglichen wir schon selbstreguliertes Lernen und wo steuern wir noch stark von außen?", "Was zeigen die Strategie-Checks unserer Klassen? Welche Bereiche werden überall selten genannt?"], methode: "1-2-4-All", mit: "Die Auswertung deines Strategie-Checks aus der Bibliothek und deine drei Beobachtungen" },
-      links: [["b", "vorlagen/strategiecheck", "Strategie-Check"], ["b", "situationen", "Was beobachtest du?"], ["b", "modelle/lernzone", "Lernzonenmodell"]] },
+      links: [["b", "klassen", "Meine Klassen"], ["b", "s/nochnicht", "Die Kraft des „Noch nicht“"], ["b", "modelle/lernzone", "Lernzonenmodell"]] },
 
     { n: 2, g: "kog", pic: "bulb", title: "Eine Strategie einführen", short: "Eine einzige Strategie ausdrücklich benennen, begründen und vormachen.",
       impuls: [
@@ -880,14 +884,17 @@ const ART = (function () {
       auftrag: [
         "Wähle unten eine Strategie, die zu deinem Strategie-Check und deinen Beobachtungen passt. Wenn du unsicher bist, nimm einen der Tipps zum Start.",
         "Führe sie ein: Name, wozu sie gut ist und wann sie hilft. Mach sie danach an einer Aufgabe aus deinem Fach vor und denk dabei laut. Der " + bib("einfuehren", "Praxisleitfaden") + " zeigt die sechs Schritte.",
-        "Zeig die Lernkarte der Strategie an der Tafel oder leg sie aus. Du findest sie auf der Strategiekarte in der Bibliothek.",
+        "Alle 46 Strategien findest du in der Bibliothek unter " + bib("alle", "Strategien") + ". Zu jeder gibt es eine Lernkarte für die Klasse, Tischkärtchen, ein Plakat, einen Reflexionszettel und einen Einführungsplan für vier Wochen. Zeig die Lernkarte deiner Strategie an der Tafel oder leg sie aus.",
         "Plane zwei feste Gelegenheiten in den nächsten zwei Wochen, in denen die Klasse die Strategie übt.",
         "Plane die Strategie in der Bibliothek unter " + bib("klassen", "Meine Klassen") + " für deine Klasse ein. Sobald du sie vorgemacht hast, setzt du den Stand dort auf „Eingeführt“. Ab jetzt führst du den Stand nur noch dort."
       ],
       strat: true,
       training: { title: "Tricks, Spicker und Merksätze", text: [
-        "Für jüngere Klassen hilft ein einfaches Wort: Aus der Strategie wird ein „Trick“ mit drei Schritten. Der Lese-Trick lautet zum Beispiel: A. Den Text einmal ganz lesen, ohne zu markieren. B. Den Text in Abschnitte teilen und Wichtiges markieren. C. Für jeden Abschnitt eine Überschrift finden.",
-        "Die Schritte schreiben die Schülerinnen und Schüler als „Spicker“ auf und legen ihn beim Arbeiten neben die Aufgabe. Am Ende der Stunde hält jede und jeder in einem Merksatz fest, wozu der Trick gut ist. Die Merksätze werden gesammelt, damit man sie später wiederfindet."] },
+        "Im direkten Training heißen Strategien „Tricks“. Ein Trick hat immer drei Schritte: A, B und C. Das macht ihn für jüngere Klassen greifbar und für alle leicht zu merken. Du kannst jede Strategie der Bibliothek als Trick einführen: Die Schritte auf ihrer Lernkarte sind dein A, B und C.",
+        "So läuft eine Trick-Stunde, zum Beispiel mit dem Experimentiertrick in den Naturwissenschaften. Zum Einstieg braucht es ein Problem, das die Klasse lösen will. Im Training ist das ein Junge, dessen Papierflieger nicht weit fliegt. Die Frage lautet: Wie geht jemand vor, der richtig experimentiert? Die Klasse sammelt Ideen an der Tafel.",
+        "Dann erarbeiten Gruppen je einen Schritt aus einem kurzen Text: A. Vermutung formulieren, B. Experiment durchführen, C. Schlussfolgern. Die Gruppen stellen ihren Schritt vor, zusammen entsteht der Trick an der Tafel. Danach wendet die Klasse ihn sofort an, hier beim Bau des Papierfliegers.",
+        "Ein Trick für Texte ist der Lese-Trick: A. Den Text einmal ganz lesen, ohne zu markieren. B. Den Text in Abschnitte teilen und Wichtiges markieren. C. Für jeden Abschnitt eine Überschrift finden.",
+        "Die Schritte schreiben die Schülerinnen und Schüler als „Spicker“ auf und legen ihn beim Arbeiten neben die Aufgabe. Am Ende der Stunde hält jede und jeder in einem Merksatz fest, wozu der Trick gut ist. Wenn du magst, beginnt jetzt schon das " + bib("vorlagen/trickbuch", "Trickbuch") + ": Jeder neue Trick bekommt dort eine Seite. Mehr dazu in Woche 6."] },
       todo: ["Strategie gewählt", "Eingeführt und laut denkend vorgemacht", "Lernkarte hängt oder liegt aus", "Zwei Übungsgelegenheiten geplant", "In Meine Klassen eingeplant, Stand „Eingeführt“"],
       refl: ["Wie hat die Klasse auf die Strategie reagiert?", "Was war beim lauten Denken ungewohnt für dich?", "Woran würdest du in drei Wochen merken, dass die Klasse die Strategie nutzt?"],
       team: { fragen: ["Welche Strategien habt ihr gewählt?", "Gibt es eine Strategie, die mehrere Fächer in derselben Klasse aufgreifen könnten?"], methode: "Vormachen zu zweit: Jede und jeder macht die eigene Strategie in drei Minuten laut denkend vor. Die andere Person sagt, was sie verstanden hat.", mit: "Deine Strategie und eine Aufgabe aus deinem Fach" },
@@ -910,8 +917,8 @@ const ART = (function () {
       training: { title: "Was-Ziel, Wie-Ziel und der gepackte Koffer", text: [
         "Ein Einstieg, der sofort zeigt, wozu Ziele gut sind: Alle packen auf einem Blatt einen Koffer für den Urlaub. Nur die Hälfte der Klasse erfährt, dass es in den Skiurlaub geht. Beim Vergleich der Koffer wird klar, wer besser vorbereitet ist und warum.",
         "Danach unterscheidet ihr zwei Ziele. Das Was-Ziel sagt, was ich herausfinden, wissen oder lernen möchte. Das Wie-Ziel sagt, wie ich vorgehe. Für SMARTe Ziele eignet sich ein Beispiel: Tim will sofort Weltmeister werden, obwohl er noch in keinem Verein ist. Die Klasse macht daraus gemeinsam ein SMARTes Ziel und überarbeitet dann das eigene.",
-        "Zur Planung gehören auch die Ablenker. Jede und jeder schreibt eigene Ablenker auf Zettel, die Klasse ordnet sie nach Gruppen. Auf andersfarbigen Zetteln steht dann die Lösung als Wenn-dann-Satz: „Wenn mein Handy vibriert, dann lege ich es in die Schublade.“"] },
-      todo: ["Ziel-Routine in mindestens drei Stunden eingesetzt", "Planungszettel oder SMARTes Ziel einmal ausprobiert", "Am Stundenende nach dem Ziel gefragt", "Strategie aus Woche 2 gemeinsam geübt"],
+        "Zur Planung gehören auch die Ablenker. Jede und jeder schreibt eigene Ablenker auf Zettel, die Klasse ordnet sie nach Gruppen. Auf andersfarbigen Zetteln steht dann die Lösung als Wenn-dann-Satz: „Wenn mein Handy vibriert, dann lege ich es in die Schublade.“ Wie man solche Sätze aufbaut, steht bei der Strategie " + bib("s/wenndann", "Wenn-dann-Pläne") + "."] },
+      todo: ["Ziel-Routine in mindestens drei Stunden eingesetzt", "Planungszettel oder SMARTes Ziel einmal ausprobiert", "Am Stundenende kurz nachgefragt: Ziel erreicht? (Daumen hoch, Mitte, runter)", "Strategie aus Woche 2 gemeinsam geübt"],
       refl: ["Wie konkret waren die Ziele am Anfang der Woche und wie am Ende?", "Wem fällt das Planen schwer? Was könnte helfen?", "Welche Frage zur Planung hat am besten funktioniert?"],
       team: { fragen: ["Wie bringen wir eine Klasse garantiert dazu, nie zu planen?", "Was davon tun wir vielleicht schon ein bisschen?"], methode: "TRIZ", mit: "Zwei Zielformulierungen aus deiner Klasse, eine gelungene und eine unklare" },
       links: [["b", "vorlagen/planung", "Planungszettel"], ["b", "modelle/smart", "SMARTe Ziele"], ["b", "modelle/phasen", "Drei-Phasen-Modell"], ["l", "start", "LernKompass: Planung"]] },
@@ -930,19 +937,21 @@ const ART = (function () {
         "Fragen für die Durchführung findest du im " + lk("durchfuehrung", "LernKompass") + "."
       ],
       training: { title: "Der Check und der Dreischritt der Motivation", text: [
-        "Check: Auf dem Spicker stehen die Schritte des Tricks. Nach jedem Schritt kreuzt die Schülerin oder der Schüler auf einer Skala von schlecht bis gut an, wie es geklappt hat. Steht das Kreuz links, wird nachgebessert, bevor es weitergeht.",
-        "Zum Überwachen gehört auch die Motivation. Dafür gibt es einen Dreischritt: 1. Bin ich motiviert? 2. Wenn nicht: Ist mein Ziel zu schwer oder nicht interessant? 3. Ich wähle eine passende Strategie und wende sie an.",
-        "Ist das Ziel zu schwer, helfen „Hilfe holen“ und „Teilziele setzen“. Ist es nicht interessant, helfen „Belohnung“, „Gute und schlechte Folgen bedenken“, „Kontrolle“ (den Lernplatz so vorbereiten, dass nichts ablenkt) und „Persönliche Bedeutung finden“. Am Ende wählt jede und jeder eine passende Strategie für sich aus. Sie kommt in einen Motivationspass."] },
+        "Der Check gehört zum Trick aus Woche 2. Auf dem Spicker steht neben jedem Schritt eine kleine Skala von „schlecht“ bis „gut“. Nach jedem Schritt kreuzt die Schülerin oder der Schüler an, wie es geklappt hat. Steht das Kreuz links, wird nachgebessert, bevor es weitergeht. Mach es zuerst vor: Du führst einen Schritt aus, schätzt dich laut ein und zeigst, wie du nachbesserst.",
+        "Zum Überwachen gehört auch die Motivation. Im Training gibt es dazu zwei Stunden. In der ersten sammelt die Klasse, was Motivation ist und wer oder was sie motiviert, in der Freizeit und in der Schule. Dann folgt ein Fallbeispiel: Eine Schülerin hat keine Lust auf ihre Aufgabe. Die Klasse schreibt auf Zettel, was ihr helfen könnte, und ordnet die Ideen an der Tafel.",
+        "In der zweiten Stunde lernt die Klasse den Dreischritt: 1. Bin ich motiviert? 2. Wenn nicht: Ist mein Ziel zu schwer oder nicht interessant? 3. Ich wähle eine passende Strategie und wende sie an. Aus einem kurzen Text über sechs Strategien baut jede und jeder ein Klappdiagramm: oben die Frage, darunter die zwei Gründe, darunter die passenden Strategien.",
+        "Ist das Ziel zu schwer, helfen " + bib("s/hilfe", "Hilfe holen") + " und " + bib("s/zielplan", "Teilziele setzen") + ". Ist es nicht interessant, helfen " + bib("s/motivation", "gute und schlechte Folgen bedenken") + ", " + bib("s/belohnen", "sich belohnen") + ", " + bib("s/ablenkung", "den Lernplatz vorbereiten") + " und " + bib("s/interesse", "persönliche Bedeutung finden") + ". Wichtig: Nicht jede Strategie passt zu jedem Problem. Bei einem zu schweren Ziel hilft eine Belohnung wenig, Teilziele dagegen schon.",
+        "Zum Schluss wählt jede und jeder eine Strategie aus und trägt sie in den " + bib("vorlagen/motivationspass", "Motivationspass") + " ein. Er passt in jedes Heft und erinnert daran, was man tun kann, wenn die Lust fehlt."] },
       todo: ["Überwachungssignal eingeführt", "Mindestens zwei Zwischenstopps gemacht", "Hilfekette hängt und wird genutzt", "Strategie aus Woche 2: Lernkarte nur noch auf Nachfrage"],
       refl: ["Passen die Signale der Klasse zu dem, was du siehst? Wer überschätzt sich, wer unterschätzt sich?", "Was hat sich an den Fragen verändert, die an dich gestellt werden?", "Wo hast du die Unterstützung zurückgenommen und wie lief das?"],
-      team: { fragen: ["Woran sehen wir in Heften und Arbeiten, dass jemand sein Lernen überwacht hat?", "Wo haben wir die Unterstützung schon zurückgenommen und wie lief das?"], methode: "1-2-4-All mit Lernspuren", mit: "Zwei anonymisierte Heftseiten oder Arbeitsblätter mit Lernspuren (Markierungen, Randnotizen, Ampelfarben)" },
+      team: { fragen: ["Woran merken wir im Unterricht, ob Schülerinnen und Schüler ihr Verstehen überwachen? Welches Signal hat bei uns funktioniert: Ampel, Checkliste oder der Check auf dem Spicker?", "Was tun unsere Klassen, wenn sie merken, dass es nicht klappt oder die Motivation fehlt? Wie unterstützen wir den nächsten Schritt, ohne ihn abzunehmen?"], methode: "1-2-4-All mit Lernspuren", mit: "Ein Beispiel aus deiner Klasse: ein Spicker mit Check, eine Ampel-Phase oder eine Situation, in der jemand nachgesteuert oder sich selbst motiviert hat" },
       links: [["b", "s/ampel", "Ampel"], ["b", "s/checkliste", "Checkliste"], ["b", "modelle/hilfekette", "Hilfekette"], ["b", "modelle/kanfer", "Regelkreis nach Kanfer"], ["l", "durchfuehrung", "LernKompass: Durchführung"]] },
 
     { n: 5, g: "meta", pic: "thought", phase: "Reflexion", title: "Reflektieren", short: "Zurückschauen, was geholfen hat. Daraus für das nächste Mal lernen.",
       impuls: [
         "Ohne Reflexion bleibt eine Strategie ein Ritual. Erst wenn Schülerinnen und Schüler prüfen, ob sie geholfen hat und woran man das merkt, entscheiden sie beim nächsten Mal selbst.",
         "Reflexion braucht keine ganze Stunde. Eine einzige gute Frage in den letzten drei Minuten reicht, wenn sie regelmäßig kommt. Leitfragen wirken dabei besser als freies Schreiben ohne Vorgabe.",
-        "Auch deine Rückmeldung zählt: Würdige das Vorgehen, nicht nur das Ergebnis. Vergleiche mit früheren Leistungen des Kindes, nicht nur mit der Klasse."
+        "Auch deine Rückmeldung zählt: Würdige das Vorgehen, nicht nur das Ergebnis. Vergleiche mit früheren Leistungen der Schülerin oder des Schülers, nicht nur mit der Klasse."
       ],
       kern: "Die letzten drei Minuten gehören einer Reflexionsfrage.",
       auftrag: [
@@ -973,8 +982,11 @@ const ART = (function () {
       ],
       plan: true,
       training: { title: "Lernbuddy und Trickbuch", text: [
-        "Der Lernbuddy bündelt alle Wochen auf einem Blatt. Vor dem Lernen: Was-Ziel, Wie-Ziel und Ablenker mit Lösung. Während des Lernens: Motivation und Check mit Spicker. Nach dem Lernen: die vier Fragen aus Woche 5. Laminiert und mit Folienstift lässt er sich immer wieder ausfüllen, in jedem Fach. Ähnlich aufgebaut ist der " + bib("vorlagen/lernbegleitung", "Lernbegleitbogen") + " in der Bibliothek.",
-        "Dazu legt die Klasse ein Trickbuch an. Jeder neue Trick kommt hinein, egal aus welchem Fach. So sieht die Klasse, dass derselbe Ablauf in Biologie beim Lesen eines Sachtexts und in Deutsch beim Schreiben eines Berichts hilft. Genau das ist Transfer."] },
+        "Der " + bib("vorlagen/lernbuddy", "Lernbuddy") + " bündelt alles aus den sechs Wochen auf einem Blatt. Vor dem Lernen: Was-Ziel, Wie-Ziel und Ablenker mit Lösung. Während des Lernens: Motivation und Check mit Spicker. Nach dem Lernen: die vier Fragen aus Woche 5. Laminiert und mit Folienstift lässt er sich immer wieder ausfüllen, in jedem Fach.",
+        "So führst du ihn ein: Zum Einstieg fragst du, warum Ziele, Motivation und der Umgang mit Ablenkern wichtig sind. Die Antworten zeigen, dass die Klasse die Teile schon kennt. Dann füllt ihr gemeinsam einen Lernbuddy für eine ausgedachte Person aus, die gut experimentieren will: Was-Ziel, Wie-Ziel mit dem Experimentiertrick, ein Ablenker mit Lösung, eine Motivationsstrategie und der Spicker für den Check.",
+        "Danach füllt jede und jeder einen eigenen Lernbuddy für eine echte Aufgabe aus, zum Beispiel für einen Sachtext oder die nächste Klassenarbeit. Einzelne stellen ihren Lernbuddy vor. Für ältere Klassen passt auch der " + bib("vorlagen/lernbegleitung", "Lernbegleitbogen") + ".",
+        "Dazu bekommt die Klasse ein " + bib("vorlagen/trickbuch", "Trickbuch") + ". Vorn stehen ein Inhaltsverzeichnis und ein Hinweis, worauf man vor, während und nach jedem Trick achtet. Für jeden Trick kommt eine Trickseite dazu: Schritte A bis C, Merksatz und wo man den Trick noch nutzen kann. Jeder neue Trick kommt hinein, egal aus welchem Fach.",
+        "So sieht die Klasse, dass derselbe Ablauf in Biologie beim Lesen eines Sachtexts und in Deutsch beim Schreiben eines Berichts hilft. Genau das ist Transfer."] },
       todo: ["Transferfrage gestellt", "Strategie in einem neuen Thema eingesetzt", "Mit einer Kollegin oder einem Kollegen abgesprochen", "Termin für den zweiten Strategie-Check festgelegt", "Nächste Strategie gewählt"],
       refl: ["Was? Was hast du in den sechs Wochen erlebt und beobachtet? Nenne drei Dinge.", "Was heißt das? Was bedeutet das für deinen Unterricht? Was hat dich überrascht?", "Was jetzt? Was machst du ab nächster Woche weiter, was als Erstes neu?"],
       team: { fragen: ["Wo greifen andere Fächer oder Kolleginnen und Kollegen unsere Strategien schon auf?", "Was behalten wir nach den sechs Wochen bei, was lassen wir weg?"], methode: "What / So What / Now What", mit: "Deine Antworten aus der Selbstreflexion dieser Woche" },
@@ -986,7 +998,8 @@ const ART = (function () {
     impuls: [
       "Bevor du eine Strategie einführst, brauchst du ein Bild aus zwei Blickwinkeln: Was wissen die Schülerinnen und Schüler selbst über ihr Lernen? Und was beobachtest du?",
       "Der Strategie-Check ist eine einzige offene Frage. Die Schülerinnen und Schüler stellen sich vor, dass sie für eine große Prüfung viel schwierigen Stoff lernen müssen. Etwa zehn Minuten lang schreiben sie alles auf, was sie dafür tun würden, ohne Namen. Danach zählst du, wie viele mindestens eine Strategie aus jedem Bereich nennen, zum Beispiel Wiederholen, Planen oder Überwachen. Das machst du in der Strategie-Bibliothek mit dem Werkzeug „Strategie-Check auswerten“: Bogen für Bogen, mit Kodierhilfe. Das Ergebnis landet direkt bei deiner Klasse und die Bibliothek zeigt dir, welche Bereiche am seltensten vorkommen.",
-      "Auch die drei Beobachtungen hältst du in der Bibliothek fest. Unter „Was beobachtest du?“ stehen typische Situationen, zum Beispiel „Fängt einfach an, ohne zu planen“. Zu jeder schlägt die Bibliothek eine passende Strategie vor."
+      "Auch die drei Beobachtungen hältst du in der Bibliothek fest. Unter „Was beobachtest du?“ stehen typische Situationen, zum Beispiel „Fängt einfach an, ohne zu planen“. Zu jeder schlägt die Bibliothek eine passende Strategie vor.",
+      "Alles, was du dafür brauchst, ist auf dieser Seite verlinkt: unten unter „Dein Auftrag für die Klasse“ und als Knöpfe am Ende dieses Kastens. So kommst du direkt zur Vorlage „Strategie-Check“, zum Werkzeug „Strategie-Check auswerten“ und zu „Was beobachtest du?“. In der Bibliothek selbst liegt die Vorlage unter „Vorlagen“ und das Werkzeug unter „Meine Klassen“."
     ],
     kern: "Keine Förderung ohne Diagnose, aber auch keine Diagnose ohne Förderung.",
     auftrag: [
@@ -1113,14 +1126,15 @@ const ART = (function () {
       '<h2 class="sec-title">Deine sechs Stationen</h2><p class="sec-lead">Vorher eine kurze Vorbereitung, dann eine Station pro Woche. Du kannst jederzeit springen, aber die Reihenfolge baut aufeinander auf.</p>' +
       '<ol class="path">' + ALLW.map(function (w) {
         const tc = todoCount(w), ok = data.done[w.n];
-        return '<li class="station g-' + w.g + (w.n === 0 ? " prep" : "") + '"><span class="pic">' + badge(w.pic, w.g) + '</span><span class="wk">' + (w.n === 0 ? "Vor Woche 1" : "Woche " + w.n) + (w.phase ? " · " + w.phase : "") + (isNow(w.n) ? '<span class="nowtag">diese Woche</span>' : "") + '</span><h3><a href="#woche/' + w.n + '">' + esc(w.title) + "</a></h3><p>" + esc(w.short) + "</p>" +
+        return '<li class="station g-' + w.g + (w.n === 0 ? " prep" : "") + (ok ? " done" : "") + '"><span class="pic">' + badge(w.pic, w.g) + '</span><span class="wk">' + (w.n === 0 ? "Vor Woche 1" : "Woche " + w.n) + (w.phase ? " · " + w.phase : "") + (isNow(w.n) ? '<span class="nowtag">diese Woche</span>' : "") + '</span><h3><a href="#woche/' + w.n + '">' + esc(w.title) + "</a></h3><p>" + esc(w.short) + "</p>" +
           '<span class="st' + (ok ? " ok" : "") + '">' + (ok ? "✓ abgeschlossen" : tc ? tc + " von " + w.todo.length + " Aufgaben erledigt" : "noch offen") + "</span></li>";
       }).join("") +
       '<li class="station after g-res"><span class="pic">' + badge("repeat", "res") + '</span><span class="wk">Nach Woche 6</span><h3><a href="#weiter">Wie es weitergeht</a></h3><p>Du nimmst alles in die Strategie-Bibliothek mit. Euer Team behält einen Rhythmus, nur seltener.</p></li>' +
       "</ol>" +
+      '<h2 class="sec-title">Mit deinem Team</h2><p class="sec-lead">Du kannst den Pfad allein gehen. Stärker wird er, wenn ihr ihn als Team geht.</p>' +
+      '<section class="box teamhint"><p>Trefft euch jede Woche etwa 20 Minuten. Jede Woche zeigt dir unten im Kasten „Für das Teamtreffen“ die Leitfragen für das nächste Treffen. Ablauf, Rollen und Methoden stehen unter <a href="#team">Team</a>. Am Ende der sechs Wochen schaut ihr mit dem Barometer unter <a href="#barometer">Kollegium</a> gemeinsam auf eure Schule.</p><div class="actions" style="margin-top:12px"><a class="btn-ghost" href="#team">Zu den Teamtreffen</a></div></section>' +
       taktHTML() +
       '<h2 class="sec-title">So funktioniert der Pfad</h2><div class="aboutcards">' +
-      '<article class="aboutcard"><h2>Allein oder im Team</h2><p>Du kannst den Pfad allein gehen. Stärker wird er, wenn ihr ihn im Team geht und euch jede Woche etwa 20 Minuten trefft. Leitfragen und Hinweise stehen unter <a href="#team">Teamtreffen</a>.</p></article>' +
       '<article class="aboutcard"><h2>Der Einstieg, die Bibliothek bleibt</h2><p>Der Pfad ist dein Einstieg für sechs Wochen. Die ' + bib("", "Strategie-Bibliothek") + " ist der Werkzeugkasten, den du schon jetzt nutzt und danach behältst. Alles zu deiner Klasse hältst du dort fest. Fragen für Planung, Durchführung und Reflexion findest du im " + lk("", "LernKompass") + ".</p></article>" +
       '<article class="aboutcard"><h2>Von wem</h2><p>Kristin Schwarz, Fachleiterin für individuelle Förderung an der Gemeinschaftsschule Campus Cordis Dresden und Fortbildnerin. Der Pfad schließt an ihren Workshop „Wer lernen kann, lernt mehr“ (Dresden 2026) an.</p></article></div>' +
       '<p class="sec-lead" style="margin-top:20px">Deine Eingaben bleiben in diesem Browser. Sichere sie ab und zu unter <a href="#rueckblick">Mein Rückblick</a> als Datei. Schreib keine Namen von Schülerinnen und Schülern hinein. Weitere Materialien findest du im <a href="https://padlet.com/videopodcast/padlet-selbstreguliertes-lernen-offentlich-7mcmz32xrviv3wc3" target="_blank" rel="noopener">Padlet „Selbstreguliertes Lernen“ ↗</a> des Teams um Prof. Dr. Ferdinand Stebner.</p>';
@@ -1132,11 +1146,11 @@ const ART = (function () {
       : cw === 0 ? "Ihr startet am " + fmtDate(data.start) + "."
       : cw === 7 ? "Die sechs gemeinsamen Wochen sind vorbei. Zeit für den Rückblick und den Entwicklungsplan."
       : "Ihr seid gemeinsam in Woche " + cw + " (" + weekRange(cw) + ").";
-    return '<h2 class="sec-title" id="takt">Im gleichen Takt</h2><p class="sec-lead">Am stärksten wirkt der Pfad, wenn alle Kolleginnen und Kollegen in derselben Woche am selben Schwerpunkt arbeiten, egal in welchem Fach. So begegnet die Klasse dem Was-Ziel oder der Reflexionsfrage in jeder Stunde wieder.</p>' +
+    return '<h2 class="sec-title" id="takt">Im gleichen Takt</h2><p class="sec-lead">Gemeint ist euer Team. Am stärksten wirkt der Pfad, wenn ihr in derselben Woche am selben Schwerpunkt arbeitet, egal in welchem Fach. Unterrichtet ihr dieselben Klassen, begegnet den Schülerinnen und Schülern das Was-Ziel oder die Reflexionsfrage in jeder Stunde wieder. Macht später das ganze Kollegium mit, gilt das für die ganze Schule.</p>' +
       '<section class="box takt"><div class="fields">' + textField("start", "Gemeinsamer Start (am besten ein Montag)", data.start, "date") + (data.start ? textField("ferien", "Nächste Ferien beginnen am (optional)", data.ferien, "date") : "") + '</div><p class="hint">' + esc(state) + "</p>" +
       (data.start ? "" +
         '<div class="actions noprint" style="margin-top:12px">' + (FRAMED ? "" : '<button type="button" class="btn-ghost" data-action="ics">Termine für den Kalender</button>') + (CAN_LINK ? '<button type="button" class="btn-ghost" data-action="copyTakt">Link mit Startdatum kopieren</button>' : "") + "</div>" +
-        (FRAMED ? '<p class="hint">Die Kalenderdatei gibt es in der Fassung, die du als Datei oder über GitHub öffnest.</p>' : "") + '<p class="hint">Die Kalenderdatei enthält den Beginn jeder Woche, Zwischenhalte nach zwei und vier Wochen, den Abschluss und eine Erinnerung nach acht Wochen. Mit Ferienbeginn kommt ein Termin drei Tage vorher dazu. Du kannst die Datei auch an das Kollegium schicken.' + (CAN_LINK ? " Wer den Link öffnet, übernimmt das Startdatum. Alle anderen Eingaben bleiben bei jeder und jedem selbst." : "") + "</p>" : "") +
+        (FRAMED ? '<p class="hint">Die Kalenderdatei gibt es in der Fassung, die du als Datei oder über GitHub öffnest.</p>' : "") + '<p class="hint">Die Kalenderdatei enthält den Beginn jeder Woche, Zwischenhalte nach zwei und vier Wochen, den Abschluss und eine Erinnerung nach acht Wochen. Mit Ferienbeginn kommt ein Termin drei Tage vorher dazu. Du kannst die Datei auch an dein Team schicken.' + (CAN_LINK ? " Wer den Link öffnet, übernimmt das Startdatum. Alle anderen Eingaben bleiben bei jeder und jedem selbst." : "") + "</p>" : "") +
       '<div id="taktCopy" class="copybox noprint" hidden><label for="taktText" class="hint">Der Link ist markiert. Kopiere ihn mit Strg+C oder ⌘+C.</label><input type="text" id="taktText" readonly></div></section>';
   }
 
@@ -1188,7 +1202,7 @@ const ART = (function () {
       '<section class="box accent"><h2>' + (w.impulsTitle || "Impuls für dich") + ' <span class="tag">' + (w.n === 0 ? "5 Minuten" : "10 Minuten") + "</span></h2>" + w.impuls.map(function (p) { return "<p>" + esc(p) + "</p>"; }).join("") + '<p class="quote">' + esc(w.kern) + "</p>" +
       '<div class="links">' + w.links.map(function (l) { return l[0] === "b" ? bib(l[1], l[2]) : lk(l[1], l[2]); }).join("") + "</div></section>" +
       '<section class="box"><h2>Dein Auftrag für die Klasse</h2><ul>' + w.auftrag.map(function (p) { return "<li>" + p + "</li>"; }).join("") + "</ul>" + extrasHTML(w) + "</section>" +
-      (w.training ? '<section class="box accent"><h2>Konkret für die Klasse <span class="tag">aus dem direkten Training</span></h2><h3 class="tr-title">' + esc(w.training.title) + "</h3>" + w.training.text.map(function (p) { return "<p>" + (p.indexOf("<a ") >= 0 ? p : esc(p)) + "</p>"; }).join("") + '<p class="source">In eigenen Worten nach dem 15-wöchigen direkten SRL-Training auf <a href="https://www.taskcards.de/#/board/0b0081b7-ef82-4659-9d1a-581543bb1e44/view" target="_blank" rel="noopener">TaskCards</a>. Dort findest du das vollständige Training.</p></section>' : "") +
+      (w.training ? '<section class="box accent"><h2>Direktes Training</h2><h3 class="tr-title">' + esc(w.training.title) + "</h3>" + w.training.text.map(function (p) { return "<p>" + (p.indexOf("<a ") >= 0 ? p : esc(p)) + "</p>"; }).join("") + '<p class="source">In eigenen Worten nach dem 15-wöchigen direkten SRL-Training auf <a href="https://www.taskcards.de/#/board/0b0081b7-ef82-4659-9d1a-581543bb1e44/view" target="_blank" rel="noopener">TaskCards</a>. Dort findest du das vollständige Training.</p></section>' : "") +
       carryBox +
       '<div class="grid2"><section class="box"><h2>Checkliste</h2><ul class="todos">' + w.todo.map(function (t, i) { const k = w.n + "-" + i; return '<li><label><input type="checkbox" data-todo="' + k + '"' + (data.todo[k] ? " checked" : "") + "><span>" + esc(t) + "</span></label></li>"; }).join("") + "</ul></section>" +
       teamBox(w) + "</div>" +
@@ -1237,34 +1251,62 @@ const ART = (function () {
   /* ---------- Gemeinsame Sprache ---------- */
   // Die metakognitiven Schritte wie in Gruppe B der Bibliothek, zugeordnet zu den drei Phasen
   function baroTeamHTML() {
-    return '<h2 class="sec-title" id="abschluss">Nach Woche 6: Abschlusstreffen<span class="time">etwa 45 Minuten, mit Checkliste etwa 1 Stunde</span></h2><p class="sec-lead">Zum Schluss schaut ihr gemeinsam, wo eure Schule steht. Dann plant ihr das nächste Halbjahr.</p>' +
-      '<section class="box"><ol><li><b>Ankommen (5 Minuten):</b> Reihum ein Satz: Was nehme ich aus den sechs Wochen mit?</li><li><b>Kollegiumsbarometer besprechen (etwa 15 Minuten)</b></li><li><b>Checkliste Schulkultur (etwa 15 Minuten, nach Wunsch)</b></li><li><b>Entwicklungsplan ausfüllen (etwa 25 Minuten)</b></li></ol></section>' +
-      '<h2 class="sec-title" id="barometer-ablauf">Nach Woche 6: Kollegiumsbarometer<span class="time">etwa 15 Minuten im Abschlusstreffen</span></h2><p class="sec-lead">Das Barometer zeigt anonym, wo eure Schule beim selbstregulierten Lernen steht. Es ist die Grundlage für den Entwicklungsplan.</p>' +
+    return '<section class="box"><h2>Ablauf</h2><ol><li><b>Ankommen (5 Minuten):</b> Reihum ein Satz: Was nehme ich aus den sechs Wochen mit?</li><li><b>Kollegiumsbarometer besprechen (etwa 15 Minuten)</b></li><li><b>Checkliste Schulkultur (etwa 15 Minuten, nach Wunsch)</b></li><li><b>Entwicklungsplan ausfüllen (etwa 25 Minuten)</b></li></ol></section>' +
+      '<h2 class="sec-title" id="barometer-ablauf">Kollegiumsbarometer<span class="time">etwa 15 Minuten im Abschlusstreffen</span></h2><p class="sec-lead">Das Barometer zeigt anonym, wo eure Schule beim selbstregulierten Lernen steht. Es ist die Grundlage für den Entwicklungsplan.</p>' +
       '<section class="box"><ol><li><b>In Woche 6 (etwa 5 Minuten):</b> Alle füllen das <a href="#barometer">Barometer</a> allein aus. Am Ende steht ein Code.</li>' +
       "<li><b>Code abgeben:</b> Jede und jeder schreibt den Code auf einen Zettel ohne Namen und bringt ihn zum Abschlusstreffen mit. Eine Person sammelt die Zettel ein, mischt sie und gibt sie der Moderation. Nicht per Mail, Chat oder Online-Umfrage, sonst ist es nicht anonym.</li>" +
-      "<li><b>Auswerten (etwa 10 Minuten, vor dem Abschlusstreffen):</b> Die Moderation tippt die Codes unter „Barometer › Auswerten“ ein. Das Ergebnis erscheint als Ampel und lässt sich mit einem Klick in den Entwicklungsplan übernehmen.</li>" +
+      "<li><b>Auswerten (etwa 10 Minuten, vor dem Abschlusstreffen):</b> Die Moderation tippt die Codes unter „Kollegium › Auswerten“ ein. Das Ergebnis erscheint als Ampel und lässt sich mit einem Klick in den Entwicklungsplan übernehmen.</li>" +
       "<li><b>Im Abschlusstreffen (etwa 15 Minuten):</b> Ihr schaut gemeinsam auf Stärken und Baustellen. Danach füllt ihr den Entwicklungsplan unten aus.</li></ol></section>";
   }
-  function viewTeam() {
-    return '<div class="head"><span class="eyebrow">Jede Woche im Team</span><h1 class="view-title" tabindex="-1">Teamtreffen</h1>' +
-      '<p class="lead">Euer Team trifft sich jede Woche etwa 20 Minuten. Hier stehen die Leitfragen und Hinweise für jedes Treffen. Was ihr in euren Klassen macht, steht in den <a href="#woche/1">Wochen</a>. Nach Woche 6 folgt ein Abschlusstreffen von etwa 45 Minuten, mit der Checkliste Schulkultur etwa eine Stunde. Im Treffen tauscht ihr Erfahrungen aus und lernt voneinander.</p></div>' +
-      '<section class="box"><h2>So läuft ein Treffen</h2><ol><li><b>Ankommen (3 Minuten):</b> Reihum ein Satz: Was ist in meiner Klasse diese Woche passiert?</li><li><b>Leitfragen der Woche (12 Minuten):</b> mit der vorgeschlagenen Methode, siehe unten.</li><li><b>15 % für die nächste Woche (5 Minuten):</b> Schaut gemeinsam auf die Leitfragen der kommenden Woche. Jede und jeder nennt einen kleinen Schritt, der dazu passt und bis zum nächsten Treffen ausprobiert wird.</li></ol>' +
+  // Teamseite wie „Ich“: 0 = allgemeine Hinweise, 1–6 = Treffen der Woche, 7 = Abschlusstreffen
+  function teamLabel(n) { return n === 0 ? "Allgemeine Hinweise" : n === 7 ? "Abschlusstreffen" : "Treffen Woche " + n; }
+  function teamStepper(cur) {
+    const items = [0, 1, 2, 3, 4, 5, 6, 7];
+    return '<ol class="stepper" aria-label="Teamtreffen">' + items.map(function (n) {
+      const cls = [n >= 1 && n <= 6 && data.done[n] ? "ok" : "", n >= 1 && n <= 6 && isNow(n) ? "now" : ""].filter(Boolean).join(" ");
+      return '<li><a href="#' + (n === 0 ? "team" : n === 7 ? "abschluss" : "treffen-" + n) + '"' + (cls ? ' class="' + cls + '"' : "") + (n === cur ? ' aria-current="page"' : "") +
+        ' aria-label="' + teamLabel(n) + (n >= 1 && n <= 6 ? ": " + esc(WEEKS[n - 1].title) : "") + (n >= 1 && n <= 6 && isNow(n) ? ", diese Woche" : "") + '" title="' + teamLabel(n) + '">' + (n === 7 ? "6+" : n) + "</a></li>";
+    }).join("") + "</ol>";
+  }
+  function teamNav(cur) {
+    const href = function (n) { return n === 0 ? "#team" : n === 7 ? "#abschluss" : "#treffen-" + n; };
+    const name = function (n) { return n === 0 ? "Allgemeines" : n === 7 ? "Abschlusstreffen" : "Treffen " + n; };
+    return '<div class="finish"><span class="saved">' + (cur >= 1 && cur <= 6 ? 'Was ihr in den Klassen macht: <a href="#woche/' + cur + '">Woche ' + cur + " unter Ich</a>" : "Was ihr in den Klassen macht, steht unter <a href=\"#woche/1\">Ich</a>.") + '</span><span class="actions">' +
+      (cur > 0 ? '<a class="btn-ghost" href="' + href(cur - 1) + '">← ' + name(cur - 1) + "</a>" : "") +
+      (cur < 7 ? '<a class="btn" href="' + href(cur + 1) + '">' + name(cur + 1) + " →</a>" : '<a class="btn" href="#weiter">Wie es weitergeht →</a>') + "</span></div>";
+  }
+  function methodHTML(t) {
+    const m = METHODS.filter(function (x) { return t.indexOf(x[0]) === 0; })[0];
+    return '<p class="row"><b>Methode</b> ' + esc(t) + "</p>" + (m && t.length < 40 ? '<p class="hint" style="margin:-2px 0 8px">' + esc(m[1]) + "</p>" : "");
+  }
+  function viewTeam(n) {
+    if (n >= 1 && n <= 6) {
+      const w = WEEKS[n - 1];
+      return teamStepper(n) +
+        '<div class="whead g-' + w.g + '"><span class="pic">' + badge(w.pic, w.g) + '</span><span class="eyebrow">Teamtreffen · Woche ' + n + " von 6" + (data.start ? " · " + weekRange(n) : "") + (isNow(n) ? '<span class="nowtag">diese Woche</span>' : "") + '</span><h1 class="view-title" tabindex="-1">' + esc(w.title) + '</h1><p class="lead" style="margin:0">Etwa 20 Minuten: Ankommen, Leitfragen, 15 % für die nächste Woche.</p></div>' +
+        '<div class="g-' + w.g + '"><section class="box accent team"><h2>Leitfragen für dieses Treffen</h2>' + leitHTML(w.team) + methodHTML(w.team.methode) +
+        '<p class="row"><b>Mitbringen</b> ' + esc(w.team.mit) + "</p>" + (w.team.vorher ? '<p class="row"><b>Vorher</b> ' + esc(w.team.vorher) + "</p>" : "") + "</section>" +
+        '<section class="box team"><h2>Zum Schluss: eure 15 %</h2>' + ausblickHTML(n).replace('<div class="ausblick">', '<div class="ausblick" style="margin-top:0;padding-top:0;border-top:0">') + "</section></div>" +
+        teamNav(n);
+    }
+    if (n === 7) {
+      return teamStepper(7) +
+        '<div class="head"><span class="eyebrow">Nach Woche 6</span><h1 class="view-title" tabindex="-1" id="abschluss">Abschlusstreffen</h1><p class="lead">Etwa 45 Minuten, mit der Checkliste Schulkultur etwa eine Stunde. Zum Schluss schaut ihr gemeinsam, wo eure Schule steht. Dann plant ihr das nächste Halbjahr.</p></div>' +
+        baroTeamHTML() + '<h2 class="sec-title" id="kultur">Checkliste Schulkultur<span class="time">etwa 15 Minuten</span></h2><p class="sec-lead">Die Checkliste geht ihr offen im Team durch, zum Beispiel zusätzlich zum Barometer oder wenn ihr kein Barometer im Kollegium macht. Sie zeigt, wo ihr steht und was ihr euch für das nächste Halbjahr vornehmt.</p>' +
+        '<section class="box"><table class="kultur"><caption class="sr">Checkliste Schulkultur</caption><thead><tr><th scope="col">Aussage</th>' + KULTUR_OPTS.map(function (o) { return '<th scope="col" class="r">' + o + "</th>"; }).join("") + "</tr></thead><tbody>" +
+        KULTUR.map(function (k, i) { return "<tr><th scope=\"row\" style=\"font-weight:400\">" + esc(k) + "</th>" + KULTUR_OPTS.map(function (o, j) { return '<td class="r" data-l="' + o + '"><input type="radio" name="k' + i + '" value="' + j + '" data-kultur="' + i + '" aria-label="' + esc(o) + '"' + (data.kultur[i] === j ? " checked" : "") + "></td>"; }).join("") + "</tr>"; }).join("") +
+        '</tbody></table><div class="actions noprint" style="margin-top:14px">' + (CAN_PRINT ? '<button type="button" class="btn-ghost" data-action="print">Seite drucken</button>' : "") + '<button type="button" class="btn-ghost" data-action="clearKultur">Auswahl zurücksetzen</button></div></section>' +
+        planHTML() +
+        '<section class="box accent noprint" style="margin-top:24px"><h2>Nach dem Abschlusstreffen</h2><p>Ihr trefft euch seltener, aber regelmäßig weiter, zum Beispiel einmal im Monat. Ablauf und Vorschläge stehen unter <a href="#weiter">Wie es weitergeht</a>.</p></section>' +
+        teamNav(7) + '<p class="printnote">© 2026 Kristin Schwarz · Weitergabe nur mit Namensnennung · keine kommerzielle Nutzung</p>';
+    }
+    return teamStepper(0) + '<div class="head"><span class="eyebrow">Jede Woche im Team</span><h1 class="view-title" tabindex="-1">Teamtreffen</h1>' +
+      '<p class="lead">Euer Team trifft sich jede Woche etwa 20 Minuten. Hier stehen die allgemeinen Hinweise. Alles zu einem Treffen findest du hinter dem Kreis mit der Nummer der Woche, das Abschlusstreffen hinter 6+. Im Treffen tauscht ihr Erfahrungen aus und lernt voneinander.</p></div>' +
+      '<section class="box accent"><h2>Vor dem ersten Treffen</h2><ul><li>Alle machen die <a href="#woche/0">Vorbereitung</a>: Strategie-Check in der Klasse und drei Beobachtungen.</li><li>Legt einen festen Termin fest, jede Woche zur selben Zeit, und tragt euren gemeinsamen Start auf der <a href="#">Startseite</a> unter „Im gleichen Takt“ ein.</li><li>Verteilt die beiden Rollen für das erste Treffen.</li></ul></section>' +
+      '<section class="box"><h2>So läuft ein Treffen</h2><ol><li><b>Ankommen (3 Minuten):</b> Reihum ein Satz: Was ist in meiner Klasse diese Woche passiert?</li><li><b>Leitfragen der Woche (12 Minuten):</b> mit der vorgeschlagenen Methode.</li><li><b>15 % für die nächste Woche (5 Minuten):</b> Schaut gemeinsam auf die Leitfragen der kommenden Woche. Jede und jeder nennt einen kleinen Schritt, der dazu passt und bis zum nächsten Treffen ausprobiert wird.</li></ol>' +
       '<h3 style="margin-top:14px">Zwei Rollen, die jede Woche wechseln</h3><ul><li><b>Moderation:</b> führt durch das Treffen, bringt die Leitfragen mit und achtet darauf, dass alle zu Wort kommen.</li><li><b>Zeitwächterin oder Zeitwächter:</b> achtet auf die Zeit und gibt ein Zeichen, wenn ein Abschnitt endet.</li></ul></section>' +
-      '<h2 class="sec-title">Die Treffen Woche für Woche</h2><p class="sec-lead">Vor dem ersten Treffen machen alle die <a href="#woche/0">Vorbereitung</a>: Strategie-Check in der Klasse und drei Beobachtungen.</p><ol class="meet">' + WEEKS.map(function (w) {
-        const nx = WEEKS[w.n];
-        return '<li class="g-' + w.g + '" id="treffen-' + w.n + '"><span class="n">' + w.n + '</span><strong>Woche ' + w.n + ": " + esc(w.title) + "</strong>" + leitHTML(w.team) +
-          '<p class="muted">Methode: ' + esc(w.team.methode) + " · Mitbringen: " + esc(w.team.mit) + "</p>" +
-          (w.team.vorher ? '<p class="muted"><b>Vorher:</b> ' + esc(w.team.vorher) + "</p>" : "") +
-          ausblickHTML(w.n) + '<p style="margin-top:8px"><a href="#woche/' + w.n + '">Inhalt von Woche ' + w.n + " →</a></p></li>";
-      }).join("") + "</ol>" +
       '<h2 class="sec-title">Die Methoden aus dem Workshop</h2><p class="sec-lead">Alle stammen aus den Liberating Structures. Sie funktionieren auch mit Schülerinnen und Schülern.</p><div class="methods">' + METHODS.map(function (m) { return '<article class="method"><h3>' + esc(m[0]) + "</h3><p>" + esc(m[1]) + "</p></article>"; }).join("") + "</div>" +
-      baroTeamHTML() + '<h2 class="sec-title" id="kultur">Nach Woche 6: Checkliste Schulkultur<span class="time">etwa 15 Minuten</span></h2><p class="sec-lead">Die Checkliste geht ihr offen im Team durch, zum Beispiel zusätzlich zum Barometer oder wenn ihr kein Barometer im Kollegium macht. Sie zeigt, wo ihr steht und was ihr euch für das nächste Halbjahr vornehmt.</p>' +
-      '<section class="box"><table class="kultur"><caption class="sr">Checkliste Schulkultur</caption><thead><tr><th scope="col">Aussage</th>' + KULTUR_OPTS.map(function (o) { return '<th scope="col" class="r">' + o + "</th>"; }).join("") + "</tr></thead><tbody>" +
-      KULTUR.map(function (k, i) { return "<tr><th scope=\"row\" style=\"font-weight:400\">" + esc(k) + "</th>" + KULTUR_OPTS.map(function (o, j) { return '<td class="r" data-l="' + o + '"><input type="radio" name="k' + i + '" value="' + j + '" data-kultur="' + i + '" aria-label="' + esc(o) + '"' + (data.kultur[i] === j ? " checked" : "") + "></td>"; }).join("") + "</tr>"; }).join("") +
-      '</tbody></table><div class="actions noprint" style="margin-top:14px">' + (CAN_PRINT ? '<button type="button" class="btn-ghost" data-action="print">Seite drucken</button>' : "") + '<button type="button" class="btn-ghost" data-action="clearKultur">Auswahl zurücksetzen</button></div></section>' +
-      planHTML() +
-      '<section class="box accent noprint" style="margin-top:24px"><h2>Nach dem Abschlusstreffen</h2><p>Ihr trefft euch seltener, aber regelmäßig weiter, zum Beispiel einmal im Monat. Ablauf und Vorschläge stehen unter <a href="#weiter">Wie es weitergeht</a>.</p></section>' +
-      '<p class="printnote">© 2026 Kristin Schwarz · Weitergabe nur mit Namensnennung · keine kommerzielle Nutzung</p>';
+      teamNav(0);
   }
 
   // Entwicklungsplan des Teams, nach dem Entwicklungsplan von DigiSchuKuMPK – CoP 4 (CC BY 4.0)
@@ -1275,7 +1317,7 @@ const ART = (function () {
     const cell = function (k, l) { return '<td data-l="' + l + '"><textarea data-plan="' + k + '" aria-label="' + l + '">' + esc(data.plan[k] || "") + "</textarea></td>"; };
     let rows = "";
     for (let i = 0; i < 3; i++) rows += "<tr>" + cell("t" + i, "Teilziel " + (i + 1)) + cell("h" + i, "Welche Unterstützung brauchen wir?") + cell("w" + i, "Wer übernimmt es?") + "</tr>";
-    return '<h2 class="sec-title" id="plan">Nach Woche 6: Unser Entwicklungsplan<span class="time">etwa 25 Minuten</span></h2><p class="sec-lead">Füllt ihn im Abschlusstreffen aus, nachdem ihr das Barometer und gegebenenfalls die Checkliste besprochen habt. Er hält fest, worauf ihr aufbaut und was ihr euch vornehmt. Stärken und Entwicklungsfelder könnt ihr aus dem <a href="#barometer">Kollegiumsbarometer</a> übernehmen.</p>' +
+    return '<h2 class="sec-title" id="plan">Unser Entwicklungsplan<span class="time">etwa 25 Minuten</span></h2><p class="sec-lead">Füllt ihn im Abschlusstreffen aus, nachdem ihr das Barometer und gegebenenfalls die Checkliste besprochen habt. Er hält fest, worauf ihr aufbaut und was ihr euch vornehmt. Stärken und Entwicklungsfelder könnt ihr aus dem <a href="#barometer">Kollegiumsbarometer</a> übernehmen.</p>' +
       '<section class="box"><div class="grid2">' + planArea("staerken", "Unsere Stärken: Was funktioniert bei uns schon gut?") + planArea("felder", "Unsere Entwicklungsfelder: Wo sehen wir die größten Herausforderungen?") + "</div>" +
       planArea("ziel", "Unser gemeinsames Ziel für das nächste Halbjahr", 2) +
       '<table class="plan-t"><caption class="sr">Teilziele</caption><thead><tr><th scope="col">Teilziel</th><th scope="col">Welche Unterstützung brauchen wir?</th><th scope="col">Wer übernimmt es?</th></tr></thead><tbody>' + rows + "</tbody></table>" +
@@ -1609,11 +1651,11 @@ const ART = (function () {
 
   /* ---------- Darstellen und Navigation ---------- */
   const app = document.getElementById("app");
-  let view = "home", week = 1, moved = "", resetArmed = false;
+  let view = "home", week = 1, meet = 0, moved = "", resetArmed = false;
   function render(focus) {
     let html, tab;
     if (view === "week") { html = viewWeek(week); tab = "week"; }
-    else if (view === "team") { html = viewTeam(); tab = "team"; }
+    else if (view === "team") { html = viewTeam(meet); tab = "team"; }
     else if (view === "review") { html = viewReview(); tab = "review"; }
     else if (view === "baro") { html = viewBaro(); tab = "baro"; }
     else if (view === "after") { html = viewAfter(); tab = "week"; }
@@ -1633,10 +1675,12 @@ const ART = (function () {
     lastRoute = h;
     const m = /^woche\/([0-6])$/.exec(h);
     if (m) { view = "week"; week = +m[1]; }
-    else if (h === "team" || h === "fachschaft") view = "team";
-    else if (/^(treffen-[1-6]|abschluss|barometer-ablauf|kultur|plan)$/.test(h)) {
-      // Sprungziel auf der Seite Teamtreffen
-      view = "team"; render(true);
+    else if (h === "team" || h === "fachschaft") { view = "team"; meet = 0; }
+    else if (/^treffen-[1-6]$/.test(h)) { view = "team"; meet = +h.slice(8); }
+    else if (h === "abschluss") { view = "team"; meet = 7; }
+    else if (/^(barometer-ablauf|kultur|plan)$/.test(h)) {
+      // Sprungziel im Abschlusstreffen
+      view = "team"; meet = 7; render(true);
       const el = document.getElementById(h);
       if (el) el.scrollIntoView();
       return;
