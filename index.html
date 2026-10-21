@@ -998,21 +998,21 @@ const ART = (function () {
     impuls: [
       "Bevor du eine Strategie einführst, brauchst du ein Bild aus zwei Blickwinkeln: Was wissen die Schülerinnen und Schüler selbst über ihr Lernen? Und was beobachtest du?",
       "Der Strategie-Check ist eine einzige offene Frage. Die Schülerinnen und Schüler stellen sich vor, dass sie für eine große Prüfung viel schwierigen Stoff lernen müssen. Etwa zehn Minuten lang schreiben sie alles auf, was sie dafür tun würden, ohne Namen. Danach zählst du, wie viele mindestens eine Strategie aus jedem Bereich nennen, zum Beispiel Wiederholen, Planen oder Überwachen. Das machst du in der Strategie-Bibliothek mit dem Werkzeug „Strategie-Check auswerten“: Bogen für Bogen, mit Kodierhilfe. Das Ergebnis landet direkt bei deiner Klasse und die Bibliothek zeigt dir, welche Bereiche am seltensten vorkommen.",
-      "Auch die drei Beobachtungen hältst du in der Bibliothek fest. Unter „Was beobachtest du?“ stehen typische Situationen, zum Beispiel „Fängt einfach an, ohne zu planen“. Zu jeder schlägt die Bibliothek eine passende Strategie vor.",
-      "Alles, was du dafür brauchst, ist auf dieser Seite verlinkt: unten unter „Dein Auftrag für die Klasse“ und als Knöpfe am Ende dieses Kastens. So kommst du direkt zur Vorlage „Strategie-Check“, zum Werkzeug „Strategie-Check auswerten“ und zu „Was beobachtest du?“. In der Bibliothek selbst liegt die Vorlage unter „Vorlagen“ und das Werkzeug unter „Meine Klassen“."
+      "Auch die drei Beobachtungen hältst du in der Bibliothek fest. Unter „Beobachtungen“ stehen typische Situationen, zum Beispiel „Fängt einfach an, ohne zu planen“. Zu jeder schlägt die Bibliothek eine passende Strategie vor.",
+      "Alles, was du dafür brauchst, ist auf dieser Seite verlinkt: unten unter „Dein Auftrag für die Klasse“ und als Knöpfe am Ende dieses Kastens. So kommst du direkt zur Vorlage „Strategie-Check“, zum Werkzeug „Strategie-Check auswerten“ und zu den „Beobachtungen“. In der Bibliothek selbst liegt die Vorlage unter „Vorlagen“ und das Werkzeug unter „Meine Klassen“."
     ],
     kern: "Keine Förderung ohne Diagnose, aber auch keine Diagnose ohne Förderung.",
     auftrag: [
       "Wähle eine Klasse und ein Fach, in dem du regelmäßig unterrichtest. Diese Klasse begleitet dich durch alle sechs Wochen.",
       "Drucke die Vorlage " + bib("vorlagen/strategiecheck", "Strategie-Check") + " aus und lass sie in der Klasse ausfüllen. Das dauert etwa zehn Minuten.",
       "Lege in der Bibliothek unter " + bib("klassen", "Meine Klassen") + " deine Klasse an. Werte den Check dann mit " + bib("klassen/zaehlen", "Strategie-Check auswerten") + " aus: Du tippst für jeden Bogen die genannten Bereiche an und übernimmst das Ergebnis am Ende für deine Klasse.",
-      "Halte drei Beobachtungen fest: Öffne " + bib("situationen", "Was beobachtest du?") + " und wähle drei Situationen, die auf deine Klasse zutreffen. Speichere jede mit „Für eine Klasse festhalten“ für deine Klasse."
+      "Halte drei Beobachtungen fest: Öffne " + bib("situationen", "Beobachtungen") + " und wähle drei Situationen, die auf deine Klasse zutreffen. Speichere jede mit „Für eine Klasse festhalten“ für deine Klasse."
     ],
     inputs: true,
     todo: ["Klasse und Fach gewählt", "Strategie-Check in der Klasse ausgefüllt", "Bögen in der Bibliothek ausgezählt und übernommen", "Drei Beobachtungen in der Bibliothek festgehalten"],
     refl: ["Welche Bereiche nennt deine Klasse im Strategie-Check am seltensten?", "Welche drei Beobachtungen hast du festgehalten?"],
     team: null,
-    links: [["b", "vorlagen/strategiecheck", "Strategie-Check"], ["b", "klassen/zaehlen", "Strategie-Check auswerten"], ["b", "klassen", "Meine Klassen"], ["b", "situationen", "Was beobachtest du?"]] };
+    links: [["b", "vorlagen/strategiecheck", "Strategie-Check"], ["b", "klassen/zaehlen", "Strategie-Check auswerten"], ["b", "klassen", "Meine Klassen"], ["b", "situationen", "Beobachtungen"]] };
   const ALLW = [PREP].concat(WEEKS);
   function W(n) { return n === 0 ? PREP : WEEKS[n - 1]; }
   function wLabel(w) { return w.n === 0 ? "Vorbereitung" : "Woche " + w.n; }
